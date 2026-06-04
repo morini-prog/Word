@@ -923,6 +923,98 @@
       }
     }
 
+    /* CHALLENGES PANEL STYLES */
+    .challenges-panel {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .challenges-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .challenges-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .challenge-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      transition: var(--transition);
+      padding: 6px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+    }
+    .challenge-status-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 55%;
+      border: 2px solid #cbd5e1;
+      display: inline-block;
+      flex-shrink: 0;
+      position: relative;
+      margin-top: 1px;
+      transition: var(--transition);
+    }
+    
+    /* CHALLENGE ACTIVE / SUCCESS STATE */
+    .challenge-item.completed {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+      color: #166534;
+    }
+    .challenge-item.completed .challenge-status-dot {
+      border-color: #22c55e;
+      background: #22c55e;
+    }
+    .challenge-item.completed .challenge-status-dot::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 1px;
+      width: 4px;
+      height: 7px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    
+    /* CONGRATS BANNER */
+    .congrats-banner {
+      display: none;
+      background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+      border: 1px solid #fef08a;
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #713f12;
+      text-align: center;
+      margin-top: 12px;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.2);
+    }
+    .congrats-banner.visible {
+      display: block;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     /* INTERACTIVE SIMULATOR STYLES */
     .simulator-card {
       background: var(--card-bg);
@@ -1358,8 +1450,8 @@
         <span class="badge-dot"></span>
         Orientado al aprendizaje superior
       </div>
-      <h1>Microsoft Word <span>avanzado</span><br>para documentos académicos</h1>
-      <p>Capacitación avanzada para estudiantes de nivel superior. Domina la estructuración, automatización y colaboración en tesinas, reportes técnicos e informes profesionales extensos.</p>
+      <h1>Domina Word <span>sin volverte loco</span><br>para tus TPs y Monografías</h1>
+      <p>El curso definitivo para ingresantes universitarios y estudiantes de nivel superior. Aprendé a formatear tus entregas, automatizar índices y configurar saltos de sección en 5 minutos. Hacé que tus TPs se vean impecables y zafá del descontrol de Word.</p>
     </div>
   </section>
 
@@ -1398,9 +1490,9 @@
       <div class="section-wrap">
         <div class="section-heading">
           <div class="block-label">Bloque <span>01</span></div>
-          <h2>Estructuración y diseño base del documento</h2>
+          <h2>Estructuración inteligente del archivo</h2>
           <div class="section-heading-bar"></div>
-          <p>El punto de partida de cualquier documento académico profesional. Aprender a estructurar correctamente desde el inicio permite automatizar índices, referencias y numeración de forma eficiente.</p>
+          <p>El punto de partida clave para salvar tus trabajos prácticos y monografías. Si organizás bien tu archivo desde el primer día, Word se encarga de hacer el índice, la numeración y el formato por vos.</p>
         </div>
 
         <div class="subblock">
@@ -1408,8 +1500,8 @@
             <span class="subblock-icon">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
             </span>
-            <span class="subblock-title">Arquitectura del documento</span>
-            <span class="subblock-badge">Fundamental</span>
+            <span class="subblock-title">Jerarquía y Estructura</span>
+            <span class="subblock-badge">Clave para aprobar</span>
           </div>
 
           <div class="concept-card">
@@ -1417,22 +1509,22 @@
               <div class="icon-container">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
               </div>
-              <h3>¿Por qué usar estilos en lugar de formato manual?</h3>
+              <h3>¿Por qué usar estilos en lugar de pintar a mano?</h3>
             </div>
             <div class="concept-grid">
               <div class="concept-col">
                 <div class="concept-col-icon negative">
                   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <h4>Sin estilos (formato manual)</h4>
-                <p>Aplicar negrita, tamaño y fuente directamente sobre el texto. El documento se ve bien visualmente, pero Word no puede "leer" su jerarquía. No es posible generar índices automáticos ni referencias dinámicas de forma estable.</p>
+                <h4>Pintar a mano (Formato manual)</h4>
+                <p>Seleccionar texto, poner negrita, cambiar tamaño y color uno por uno. Parece fácil, pero Word no entiende la estructura de tu TP. Si querés hacer un índice automático, vas a tener que escribirlo a mano y te va a quedar todo desalineado.</p>
               </div>
               <div class="concept-col">
                 <div class="concept-col-icon positive">
                   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <h4>Con estilos (formato semántico)</h4>
-                <p>Asignar "Título 1", "Título 2", "Normal" a cada elemento. Word entiende la estructura del documento: puede generar TDC automáticas, reorganizar secciones y actualizar referencias dinámicamente sin alterar el formato.</p>
+                <h4>Con estilos (Formato automático)</h4>
+                <p>Usar "Título 1", "Título 2" y "Normal" desde la barra superior. Word entiende la jerarquía de tu monografía: genera el índice en un segundo, acomoda el formato al instante y te ahorra horas de trabajo antes de entregar.</p>
               </div>
             </div>
           </div>
@@ -1443,8 +1535,8 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
               </div>
               <div>
-                <div class="topic-title">Estilos predefinidos y personalizados (Título 1, Título 2, Normal)</div>
-                <div class="topic-desc">Los estilos son conjuntos de formato (fuente, tamaño, sangría, espacio) que se aplican de forma consistente. Existen estilos predefinidos en Word y es posible crear estilos propios adaptados a las normas institucionales.</div>
+                <div class="topic-title">Tus mejores aliados: Estilos por defecto (Título 1, Título 2, Normal)</div>
+                <div class="topic-desc">Olvidate de recordar qué letra o tamaño usaste para los títulos. Con los estilos definís el formato una sola vez y lo aplicás con un clic. Ideal para cumplir con las normas APA de la facultad sin volverte loco.</div>
               </div>
             </div>
             <div class="topic-steps">
@@ -1502,7 +1594,7 @@
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.89 3.094L21 11.203M9.812 6.172l8.11 8.11M8.27 7.712L4.032 11.95a2 2 0 000 2.828l3.182 3.182a2 2 0 002.828 0l4.238-4.238a2 2 0 000-2.828l-3.182-3.182a2 2 0 00-2.828 0zm-4.73 9.429L19.5 3"></path></svg>
             </span>
             <span class="subblock-title">Control de página y geometría</span>
-            <span class="subblock-badge">Esencial para tesis</span>
+            <span class="subblock-badge">Esencial para trabajos formales</span>
           </div>
 
           <div class="topic-card">
@@ -1511,8 +1603,8 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7h7m-7 6h7m-13-1l-2 2m0 0l-2-2m2 2V4"></path></svg>
               </div>
               <div>
-                <div class="topic-title">Salto de página vs. salto de sección (página siguiente / continua)</div>
-                <div class="topic-desc">Son dos herramientas con propósitos muy distintos. El <strong>salto de página</strong> solo empuja el contenido al inicio de la página siguiente. El <strong>salto de sección</strong> crea una frontera invisible que divide el documento en zonas independientes: cada sección puede tener sus propios márgenes, orientación de hoja y sistemas de numeración.</div>
+                <div class="topic-title">Salto de página vs. salto de sección (¿Por qué se te rompe todo el archivo?)</div>
+                <div class="topic-desc">⚠️ <strong>Regla de oro:</strong> Dejá de apretar ENTER mil veces para bajar de hoja. El <strong>salto de página</strong> empuja el texto limpiamente a la siguiente hoja. Pero si necesitás que una sola página sea horizontal (para una tabla grande) o numerar diferente, necesitás un <strong>salto de sección</strong>, que crea una frontera para configurar hojas de forma independiente.</div>
               </div>
             </div>
             <div class="topic-steps">
@@ -1561,8 +1653,8 @@
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
               </div>
               <div>
-                <div class="topic-title">Numeración avanzada: romanos en preliminares, arábigos desde la introducción</div>
-                <div class="topic-desc">En documentos formales como tesis, las páginas iniciales (índice, dedicatoria) se numeran en romanos (i, ii, iii) y el cuerpo principal empieza en arábigos desde 1. Esto requiere romper el vínculo entre los encabezados y pies de página de cada sección.</div>
+                <div class="topic-title">El dolor de cabeza universitario: Números romanos al inicio y arábigos después</div>
+                <div class="topic-desc">En cualquier TP formal o monografía, la carátula y el índice no llevan número o van en romanos (i, ii, iii), y el contenido real empieza en 1 recién en la Introducción. Para hacer esto sin separar el archivo en varios archivos de Word, necesitás romper el vínculo entre las secciones de página.</div>
               </div>
             </div>
             <div class="topic-steps">
@@ -1594,6 +1686,30 @@
             <div class="simulator-layout">
               <!-- CONTROLES -->
               <div class="sim-controls">
+                
+                <!-- PANEL DE DESAFÍOS -->
+                <div class="challenges-panel">
+                  <div class="challenges-title">🎯 Desafíos de Secciones</div>
+                  <ul class="challenges-list">
+                    <li class="challenge-item" id="challenge-1">
+                      <span class="challenge-status-dot"></span>
+                      <span class="challenge-text"><strong>Reto 1:</strong> Poné la hoja 2 en Horizontal sin acostar la hoja 1.</span>
+                    </li>
+                    <li class="challenge-item" id="challenge-2">
+                      <span class="challenge-status-dot"></span>
+                      <span class="challenge-text"><strong>Reto 2:</strong> Hacé que la hoja 2 empiece con número romano <strong>i</strong>.</span>
+                    </li>
+                    <li class="challenge-item" id="challenge-3">
+                      <span class="challenge-status-dot"></span>
+                      <span class="challenge-text"><strong>Reto 3:</strong> Desvinculá el encabezado de la hoja 2 para cambiar el título.</span>
+                    </li>
+                  </ul>
+                  
+                  <!-- BANNER DE FELICITACIÓN -->
+                  <div class="congrats-banner" id="congrats-banner">
+                    🏆 ¡Sos un crack! Dominás las secciones de Word mejor que el 90% de los mortales.
+                  </div>
+                </div>
                 
                 <!-- CONTROL 1: TIPO DE SALTO -->
                 <div class="control-group">
@@ -2738,6 +2854,40 @@
         footerP1.innerText = '1';
         footerP2.innerText = p2Num;
         footerP3.innerText = p3Num;
+      }
+
+      // Check gamified challenges
+      checkChallenges();
+    }
+
+    function checkChallenges() {
+      const isSectionBreak = document.getElementById('break-section-1-2').checked;
+      const isLinked = document.getElementById('link-to-previous-2').checked;
+      const numFormatVal = document.getElementById('num-format-2').value;
+      const isRestart = document.getElementById('num-restart-2').checked;
+
+      // Challenge 1: Landscape page 2 with section break
+      const c1Completed = isSectionBreak && orientation2 === 'landscape';
+      // Challenge 2: Roman i and start at 1/i
+      const c2Completed = isSectionBreak && numFormatVal === 'roman' && isRestart;
+      // Challenge 3: Unlinked header with section break
+      const c3Completed = isSectionBreak && !isLinked;
+
+      const item1 = document.getElementById('challenge-1');
+      const item2 = document.getElementById('challenge-2');
+      const item3 = document.getElementById('challenge-3');
+      const congrats = document.getElementById('congrats-banner');
+
+      if (item1) item1.classList.toggle('completed', c1Completed);
+      if (item2) item2.classList.toggle('completed', c2Completed);
+      if (item3) item3.classList.toggle('completed', c3Completed);
+
+      if (congrats) {
+        if (c1Completed && c2Completed && c3Completed) {
+          congrats.classList.add('visible');
+        } else {
+          congrats.classList.remove('visible');
+        }
       }
     }
 
