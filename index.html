@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft Word avanzado · Capacitación Nivel Superior</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --accent: #0ea5e9;
+      --accent-teal: #06b6d4;
+      --dark-bg: #090d16;
+      --light-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.06), 0 8px 10px -6px rgba(37, 99, 235, 0.04);
+      --shadow-premium: 0 25px 50px -12px rgba(9, 13, 22, 0.25);
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--dark-bg);
+      color: #fff;
+      padding: 100px 0 88px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 75% 25%, rgba(37, 99, 235, 0.14) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(6, 182, 212, 0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      flex-shrink: 0;
+      box-shadow: 0 0 8px var(--accent-teal);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.65));
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 620px;
+      font-weight: 400;
+      line-height: 1.7;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    /* NAV TABS */
+    .nav-sticky {
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px) saturate(180%);
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      background: none;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-tab svg {
+      width: 16px;
+      height: 16px;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .nav-tab:hover {
+      color: var(--primary);
+    }
+
+    .nav-tab:hover svg {
+      color: var(--primary);
+    }
+
+    .nav-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .nav-tab.active svg {
+      color: var(--primary);
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      padding: 24px 0 80px;
+    }
+
+    .section {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .section.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-heading {
+      padding: 32px 0 28px;
+    }
+
+    .block-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--text-dark);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .block-label span {
+      color: #38bdf8;
+    }
+
+    .section-heading h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-heading-bar {
+      width: 48px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+      margin: 12px 0;
+    }
+
+    .section-heading p {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    .subblock {
+      margin-bottom: 40px;
+    }
+
+    .subblock-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .subblock-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--primary-light);
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+    }
+
+    .subblock-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .subblock-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .subblock-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+      padding: 3px 12px;
+      border-radius: var(--radius-full);
+      margin-left: auto;
+    }
+
+    /* CONCEPT CARD */
+    .concept-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .concept-card-header .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .concept-card-header .icon-container svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .concept-card-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .concept-col {
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .concept-col:hover {
+      border-color: var(--primary-border);
+      background: #fff;
+      box-shadow: var(--shadow-md);
+    }
+
+    .concept-col-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .concept-col-icon.negative {
+      background: #fef2f2;
+      color: #ef4444;
+    }
+
+    .concept-col-icon.positive {
+      background: #f0fdf4;
+      color: #22c55e;
+    }
+
+    .concept-col-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .concept-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .concept-col p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* TOPIC CARD */
+    .topic-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .topic-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0px;
+      background: var(--primary);
+      border-top-left-radius: var(--radius-lg);
+      border-bottom-left-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .topic-card:hover {
+      border-color: var(--primary-border);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .topic-card:hover::after {
+      width: 4px;
+    }
+
+    .topic-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .topic-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: var(--transition);
+    }
+
+    .topic-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .topic-card:hover .topic-icon {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .topic-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .topic-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .topic-steps {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .topic-steps-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topic-steps-label svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .step-item strong {
+      color: var(--text-dark);
+    }
+
+    .step-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    }
+
+    .links-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      transition: var(--transition);
+    }
+
+    .link-pill:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+    }
+
+    .link-pill svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* METODOLOGIA */
+    .metodo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .metodo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .metodo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      border-top: 4px solid var(--primary);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .metodo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .metodo-time {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .metodo-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .metodo-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* CRONOGRAMA */
+    .crono-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .crono-item {
+      display: flex;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .crono-item:last-child {
+      border-bottom: none;
+    }
+
+    .crono-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #e2e8f0;
+      min-width: 60px;
+      text-align: right;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      padding-top: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .crono-body {
+      flex-grow: 1;
+    }
+
+    .crono-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .crono-body p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      background: var(--primary-light);
+      color: var(--primary-hover);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      border: 1px solid var(--primary-border);
+    }
+
+    /* RECURSOS SECTION */
+    .recursos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .recurso-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .recurso-card:hover {
+      border-color: var(--primary-border);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .recurso-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .recurso-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .recurso-card:hover .recurso-icon {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .recurso-meta {
+      flex-grow: 1;
+    }
+
+    .recurso-meta strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .recurso-meta span {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .recurso-meta span svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* CODE STYLING */
+    code {
+      background: #f1f5f9;
+      color: #1e40af;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-bg);
+      color: rgba(255, 255, 255, 0.45);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    footer p {
+      max-width: 600px;
+      margin: 0 auto 12px;
+    }
+
+    footer strong {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+    }
+
+    /* BACK TOP BUTTON */
+    .back-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.8) translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .back-top.vis {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .back-top:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .back-top svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.5;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      .container, .section-wrap {
+        padding: 0 20px;
+      }
+      .hero {
+        padding: 72px 0 60px;
+      }
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .nav-tab {
+        padding: 14px 16px;
+        font-size: 0.82rem;
+      }
+      .section-heading h2 {
+        font-size: 1.6rem;
+      }
+      .concept-card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Orientado al aprendizaje superior
+      </div>
+      <h1>Microsoft Word <span>avanzado</span><br>para documentos académicos</h1>
+      <p>Capacitación avanzada para estudiantes de nivel superior. Domina la estructuración, automatización y colaboración en tesinas, reportes técnicos e informes profesionales extensos.</p>
+    </div>
+  </section>
+
+  <!-- STICKY NAVIGATION TABS -->
+  <nav class="nav-sticky" role="navigation">
+    <div class="nav-inner" role="tablist" aria-label="Secciones del curso">
+      <button class="nav-tab active" role="tab" aria-selected="true" aria-controls="b1" id="tab-b1" onclick="goTab('b1', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        Bloque 1: Estructura
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" aria-controls="b2" id="tab-b2" onclick="goTab('b2', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        Bloque 2: Tablas y Visuales
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" aria-controls="b3" id="tab-b3" onclick="goTab('b3', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        Bloque 3: Referencias
+      </button>
+      <button class="nav-tab" role="tab" aria-selected="false" aria-controls="b4" id="tab-b4" onclick="goTab('b4', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        Bloque 4: Automatización
+      </button>
+
+      <button class="nav-tab" role="tab" aria-selected="false" aria-controls="rec" id="tab-rec" onclick="goTab('rec', this)">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+        Recursos
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main">
+
+    <!-- BLOQUE 1: ESTRUCTURA -->
+    <div class="section active fade-in" id="b1" role="tabpanel" aria-labelledby="tab-b1">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div class="block-label">Bloque <span>01</span></div>
+          <h2>Estructuración y diseño base del documento</h2>
+          <div class="section-heading-bar"></div>
+          <p>El punto de partida de cualquier documento académico profesional. Aprender a estructurar correctamente desde el inicio permite automatizar índices, referencias y numeración de forma eficiente.</p>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            </span>
+            <span class="subblock-title">Arquitectura del documento</span>
+            <span class="subblock-badge">Fundamental</span>
+          </div>
+
+          <div class="concept-card">
+            <div class="concept-card-header">
+              <div class="icon-container">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+              </div>
+              <h3>¿Por qué usar estilos en lugar de formato manual?</h3>
+            </div>
+            <div class="concept-grid">
+              <div class="concept-col">
+                <div class="concept-col-icon negative">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h4>Sin estilos (formato manual)</h4>
+                <p>Aplicar negrita, tamaño y fuente directamente sobre el texto. El documento se ve bien visualmente, pero Word no puede "leer" su jerarquía. No es posible generar índices automáticos ni referencias dinámicas de forma estable.</p>
+              </div>
+              <div class="concept-col">
+                <div class="concept-col-icon positive">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h4>Con estilos (formato semántico)</h4>
+                <p>Asignar "Título 1", "Título 2", "Normal" a cada elemento. Word entiende la estructura del documento: puede generar TDC automáticas, reorganizar secciones y actualizar referencias dinámicamente sin alterar el formato.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Estilos predefinidos y personalizados (Título 1, Título 2, Normal)</div>
+                <div class="topic-desc">Los estilos son conjuntos de formato (fuente, tamaño, sangría, espacio) que se aplican de forma consistente. Existen estilos predefinidos en Word y es posible crear estilos propios adaptados a las normas institucionales.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Seleccioná el texto al que querés aplicar el estilo.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Inicio → Grupo Estilos</strong>: hacé clic en "Título 1", "Título 2" o el que corresponda.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para modificar un estilo existente: clic derecho sobre el estilo en la cinta → <strong>Modificar</strong> → ajustá fuente, tamaño, espaciado y guardá.</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Para estandarizar en todos los documentos futuros, seleccioná la opción <strong>"Documentos nuevos basados en esta plantilla"</strong> en la ventana de Modificar.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://www.youtube.com/watch?v=VgXNo1JVWYU" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                Estilos, títulos y TDC
+              </a>
+              <a class="link-pill" href="https://www.youtube.com/watch?v=j5QsRpJFhc8" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                Crear y usar estilos
+              </a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Panel de navegación: organización y vista de esquema</div>
+                <div class="topic-desc">El Panel de navegación muestra en tiempo real todos los títulos del documento en forma de árbol jerárquico. Permite saltar a cualquier sección y reorganizar bloques enteros arrastrándolos, sin necesidad de cortar y pegar manualmente.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Vista → Grupo Mostrar → Panel de navegación</strong> (activar la casilla).</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>En la pestaña "Títulos" del panel lateral, hacé clic en cualquier título para saltar inmediatamente a esa página.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para reorganizar secciones: arrastrá el título del panel hacia arriba o abajo. Todo el texto y subtítulos asociados se moverán con él.</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Para la vista de esquema: <strong>Vista → Esquema</strong>. Permite colapsar o expandir niveles de jerarquía para lectura y estructuración rápida.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.89 3.094L21 11.203M9.812 6.172l8.11 8.11M8.27 7.712L4.032 11.95a2 2 0 000 2.828l3.182 3.182a2 2 0 002.828 0l4.238-4.238a2 2 0 000-2.828l-3.182-3.182a2 2 0 00-2.828 0zm-4.73 9.429L19.5 3"></path></svg>
+            </span>
+            <span class="subblock-title">Control de página y geometría</span>
+            <span class="subblock-badge">Esencial para tesis</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7h7m-7 6h7m-13-1l-2 2m0 0l-2-2m2 2V4"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Salto de página vs. salto de sección (página siguiente / continua)</div>
+                <div class="topic-desc">Son dos herramientas con propósitos muy distintos. El <strong>salto de página</strong> solo empuja el contenido al inicio de la página siguiente. El <strong>salto de sección</strong> crea una frontera invisible que divide el documento en zonas independientes: cada sección puede tener sus propios márgenes, orientación de hoja y sistemas de numeración.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Posicioná el cursor al final de la sección actual.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Disposición → Saltos</strong>. Elegí "Página siguiente" (sección en hoja nueva) o "Continua" (dentro de la misma hoja).</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para auditar los saltos en tu página: activá la opción <strong>Mostrar todo (¶)</strong> en la pestaña Inicio. Verás una línea indicando el tipo de salto aplicado.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://www.youtube.com/watch?v=VgXNo1JVWYU" target="_blank" rel="noopener">Vídeo: saltos de sección</a>
+              <a class="link-pill" href="https://wordexperto.com/2017/12/19/saltos-de-seccion/" target="_blank" rel="noopener">WordExperto: secciones</a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Márgenes, orientación y tamaño de papel por sección</div>
+                <div class="topic-desc">Dividir el documento en secciones permite realizar configuraciones locales únicas. Por ejemplo, colocar una hoja horizontal para una tabla grande o gráfico complejo dentro de un anexo, sin alterar las páginas verticales adyacentes.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Hacé clic en cualquier lugar dentro de la sección que querés cambiar.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span><strong>Disposición → Configurar página → Orientación</strong> y cambiala a Horizontal.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para márgenes o tamaños de papel específicos: abrí el panel completo <strong>Configurar página</strong> y asegurate de que en la casilla "Aplicar a" diga <strong>"Esta sección"</strong>.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Numeración avanzada: romanos en preliminares, arábigos desde la introducción</div>
+                <div class="topic-desc">En documentos formales como tesis, las páginas iniciales (índice, dedicatoria) se numeran en romanos (i, ii, iii) y el cuerpo principal empieza en arábigos desde 1. Esto requiere romper el vínculo entre los encabezados y pies de página de cada sección.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Crea un Salto de Sección de "Página siguiente" justo antes de la hoja de Introducción.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Hacé doble clic en el pie de página de la Introducción (Sección 2) para abrir la pestaña <strong>Encabezado y pie de página</strong>. Desactiva el botón <strong>"Vincular al anterior"</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>En la Sección 1: <strong>Número de página → Formato del número de página</strong> → elegí números romanos (i, ii, iii) y poné "Iniciar en i".</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>En la Sección 2: <strong>Número de página → Formato del número</strong> → elegí arábigos (1, 2, 3) y poné "Iniciar en 1".</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://support.microsoft.com/es-es/office/agregar-diferentes-n%C3%BAmeros-de-p%C3%A1gina-o-formatos-de-n%C3%BAmero-a-distintas-secciones-bb4da2bd-1597-4b0c-9e91-620615ed8c05" target="_blank" rel="noopener">Guía de numeración</a>
+              <a class="link-pill" href="https://support.microsoft.com/es-es/office/agregar-diferentes-n%C3%BAmeros-de-p%C3%A1gina-o-formatos-de-n%C3%BAmero-a-distintas-secciones-bb4da2bd-1597-4b0c-9e91-620615ed8c05" target="_blank" rel="noopener">Guía avanzada de páginas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 2: TABLAS Y VISUALES -->
+    <div class="section" id="b2" role="tabpanel" aria-labelledby="tab-b2">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div class="block-label">Bloque <span>02</span></div>
+          <h2>Gestión de elementos complejos y tablas</h2>
+          <div class="section-heading-bar"></div>
+          <p>Tablas de datos con comportamiento profesional, fórmulas integradas, elementos visuales y maquetación avanzada para documentos técnicos.</p>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </span>
+            <span class="subblock-title">Tablas de datos avanzadas</span>
+            <span class="subblock-badge">Técnico</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Inserción y conversión de texto a tabla (y viceversa)</div>
+                <div class="topic-desc">Word puede estructurar automáticamente texto plano separado por delimitadores (tabulaciones, comas, punto y coma) en una tabla formal. También realiza el proceso inverso: exportar una tabla a texto sin perder la información.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Seleccioná el texto que contiene las filas y columnas delimitadas por comas o tabuladores.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Insertar → Tabla → Convertir texto en tabla</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Configura el número de columnas y define el separador correcto. Hacé clic en Aceptar.</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Para convertir a texto plano: selecciona la tabla, ve a <strong>Disposición (de herramientas de tabla) → Datos → Convertir a texto</strong>.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Repetición de fila de título en páginas consecutivas</div>
+                <div class="topic-desc">Cuando una tabla de datos es demasiado extensa y se divide en varias páginas, es obligatorio mantener visible la fila de cabecera en cada hoja. Word automatiza esta acción sin duplicar datos manualmente.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Seleccioná la primera fila (los encabezados) de tu tabla.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Clic derecho en la fila seleccionada y elegí <strong>Propiedades de tabla</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Pestaña <strong>Fila</strong> → Activa el checkbox <strong>"Repetir como fila de encabezado en la parte superior de cada página"</strong>.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 11h.01M12 7h.01M9 10h.01M15 11h.01M12 14h.01M15 14h.01M15 10h.01M12 17h.01M15 17h.01M12 20h.01M9 20h.01M15 20h.01M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Fórmulas básicas en celdas: =SUM(), =AVERAGE()</div>
+                <div class="topic-desc">Word cuenta con un motor de fórmulas básicas en tablas. Esto te permite calcular sumatorias o promedios sobre filas o columnas sin salir del documento. Referencias clave: <code>ABOVE</code> (arriba) e <code>LEFT</code> (izquierda).</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Haz clic en la celda donde quieres ver el cálculo.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña de herramientas de tabla <strong>Disposición → Datos → Fórmula</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Escribe la fórmula adecuada, por ejemplo: <code>=SUM(ABOVE)</code> para sumar o <code>=AVERAGE(LEFT)</code> para promediar.</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Si cambian los valores de las celdas, selecciona el resultado de la fórmula y presiona <strong>F9</strong> para recalcular.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </span>
+            <span class="subblock-title">Elementos visuales y maquetación</span>
+            <span class="subblock-badge">Diseño</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2zm9 0h-2a2 2 0 00-2 2v3h6v-3a2 2 0 00-2-2zM9 9l1.586-1.586a2 2 0 012.828 0L15 9m-6 0h6"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Inserción de imágenes, diagramas SmartArt y capturas</div>
+                <div class="topic-desc">SmartArt es la herramienta perfecta para crear esquemas conceptuales interactivos (flujos, jerarquías) cuyos textos son indexables. La función de Captura ayuda a integrar recortes de pantalla limpios de otras herramientas.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Insertar → SmartArt</strong>: elegí el modelo que mejor se adapte (procesos, pirámides, etc.).</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Usa la pestaña <strong>Diseño de SmartArt</strong> para refinar la estética usando las paletas del documento.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para capturas rápidas: <strong>Insertar → Captura</strong> → Seleccioná la ventana activa o "Recorte de pantalla".</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://support.microsoft.com/es-es/office/crear-un-gr%C3%A1fico-smartart-fac94c93-500b-4a0a-97af-124040594842" target="_blank" rel="noopener">Guía SmartArt oficial</a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v6m-3-3h6"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Opciones de ajuste de texto y estabilidad del formato</div>
+                <div class="topic-desc">Elegir un mal ajuste de texto hace que los diagramas "salten" al editar. En tesis o reportes de gran extensión, la opción más robusta y recomendada para mantener la estabilidad del documento es usar imágenes integradas al flujo del texto.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                Opciones clave
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">✓</span><span><strong>En línea con el texto:</strong> Trata a la imagen como una letra grande. Es la opción más segura contra descuadres involuntarios de formato.</span></div>
+                <div class="step-item"><span class="step-num">⚠️</span><span><strong>Ajuste Cuadrado/Estrecho:</strong> El texto fluye alrededor de la imagen. Es idóneo para folletos, pero peligroso en informes extensos ya que la imagen flota en base a anclas ocultas.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://support.microsoft.com/es-es/office/insertar-im%C3%A1genes-3c51edf4-22e1-460a-b372-9329a8724344" target="_blank" rel="noopener">Ilustraciones en Word</a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Rótulos automáticos de ilustraciones (títulos de figura)</div>
+                <div class="topic-desc">Los rótulos numeran y titulan de forma automática las figuras ("Figura 1", "Tabla 2"). Son la base indispensable para poder insertar la tabla automática de ilustraciones y tablas en el siguiente bloque.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Seleccioná la imagen o tabla haciendo clic sobre ella.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Referencias → Insertar título</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Elegí la etiqueta correcta (Ilustración, Tabla o Ecuación) y escribí el título correspondiente al elemento.</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Al reordenar tus figuras, selecciona todo el texto con <strong>Ctrl+A</strong> y presiona <strong>F9</strong> para que la numeración se corrija sola.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 3: REFERENCIAS -->
+    <div class="section" id="b3" role="tabpanel" aria-labelledby="tab-b3">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div class="block-label">Bloque <span>03</span></div>
+          <h2>Automatización de referencias académicas e índices</h2>
+          <div class="section-heading-bar"></div>
+          <p>El corazón del documento académico estructurado de forma automatizada. Tablas de contenido, citas bibliográficas y referencias cruzadas que se actualizan solas al modificar el contenido.</p>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </span>
+            <span class="subblock-title">Tablas de contenido e índices automáticos</span>
+            <span class="subblock-badge">Automatización</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Tabla de contenido (TDC) automática basada en estilos</div>
+                <div class="topic-desc">La TDC recopila dinámicamente la jerarquía que definiste a través de tus Estilos de título ("Título 1", "Título 2") en el Bloque 1. Al agregar más contenido, el índice se actualiza automáticamente con un clic sin necesidad de reescribir nada.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Posiciona tu cursor en el lugar donde insertarás el índice (usualmente tras la portada).</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Referencias → Tabla de contenido</strong> → Elegí "Tabla automática 1" o "Tabla automática 2".</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para actualizar tras añadir títulos: clic izquierdo en cualquier parte de la tabla → <strong>Actualizar tabla → Actualizar toda la tabla</strong>.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://www.youtube.com/watch?v=tTX4PPr028k" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                Tutorial TDC paso a paso
+              </a>
+              <a class="link-pill" href="https://support.microsoft.com/es-es/office/insertar-una-tabla-de-contenido-882e8564-0edb-435e-84b5-1d8552ccf0c0" target="_blank" rel="noopener">Doc. oficial de tablas de contenido</a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Tablas de ilustraciones y de tablas automáticas</div>
+                <div class="topic-desc">Crea índices particulares para las figuras o las tablas del documento en pocos segundos. Esto solo funciona si se asignaron rótulos automáticos a cada objeto visual.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Haz clic en la hoja donde quieres insertar el índice visual.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Referencias → Insertar tabla de ilustraciones</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>En el menú "Etiqueta de título", selecciona si deseas el índice de "Ilustración" o de "Tabla". Hacé clic en Aceptar.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Notas al pie y notas al final</div>
+                <div class="topic-desc">Las notas al pie sirven para añadir aclaraciones de interés secundario o citar fuentes. Word controla automáticamente la posición, numeración y el ajuste dinámico cuando el texto sube o baja de página.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Posicioná el cursor del ratón en la palabra donde insertarás la nota.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Referencias → Insertar nota al pie</strong> (o nota al final).</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Escribe el texto de la nota al final de la hoja en la marca numerada.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z"></path></svg>
+            </span>
+            <span class="subblock-title">Citas bibliográficas y referencias cruzadas</span>
+            <span class="subblock-badge">Citas</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Gestión de fuentes bibliográficas: APA / ISO / IEEE</div>
+                <div class="topic-desc">El gestor de referencias de Word permite introducir una base de datos de libros, artículos o páginas web. Al citarlos, Word da formato correcto automáticamente al texto. Al final del trabajo, genera toda la bibliografía estructurada según normas APA o ISO.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Referencias → Estilo</strong> → Elegí el formato que te exige la universidad (ej.: APA).</span></div>
+                <div class="step-item"><span class="step-num">2</span><span><strong>Insertar cita → Agregar nueva fuente</strong>. Completa la ficha con autor, año y título del recurso.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para insertar la bibliografía al final: pestaña <strong>Referencias → Bibliografía → Insertar bibliografía</strong>.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://www.youtube.com/watch?v=JjbAFhW3Cxc" target="_blank" rel="noopener">Vídeo: Citas y Bibliografía</a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Referencias cruzadas dinámicas</div>
+                <div class="topic-desc">Las referencias cruzadas son enlaces de texto tipo "ver Figura 2 en pág. 12". Si mueves la figura de página, la referencia se actualizará dinámicamente mediante atajos de teclado sin requerir corrección manual.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Posiciona tu cursor donde deba ir la referencia cruzada (por ejemplo, entre paréntesis: "ver ").</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Referencias → Referencia cruzada</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Selecciona en "Tipo de referencia" el objeto a enlazar (Título, Ilustración o Tabla) e indica qué quieres mostrar (por ejemplo, "Número y etiqueta" o "Número de página").</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Presiona <strong>Ctrl+A</strong> y luego <strong>F9</strong> para recalcular y actualizar la referencia tras hacer cambios en el documento.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 4: AUTOMATIZACIÓN -->
+    <div class="section" id="b4" role="tabpanel" aria-labelledby="tab-b4">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div class="block-label">Bloque <span>04</span></div>
+          <h2>Colaboración, automatización y productividad</h2>
+          <div class="section-heading-bar"></div>
+          <p>Herramientas avanzadas para trabajo colaborativo, generación masiva de correspondencia, protección de la información y automatización de tareas repetitivas.</p>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-4.8a2 2 0 012.22 0l8 4.8A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.25 0l-2.25 1.5"></path></svg>
+            </span>
+            <span class="subblock-title">Combinación de correspondencia y plantillas</span>
+            <span class="subblock-badge">Automatización</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Combinación de correspondencia: cartas, sobres y etiquetas masivas</div>
+                <div class="topic-desc">Permite generar de forma automática cientos de documentos personalizados a partir de un único modelo y una lista de datos externa en Excel. Es sumamente útil para la creación masiva de certificados o cartas institucionales.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Correspondencia → Iniciar combinación</strong> → Seleccioná "Cartas" o "Etiquetas".</span></div>
+                <div class="step-item"><span class="step-num">2</span><span><strong>Seleccionar destinatarios → Usar lista existente</strong> e importá tu base de datos de Excel.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Usa la opción <strong>Insertar campo combinado</strong> para colocar campos dinámicos (ej: «Nombre»).</span></div>
+                <div class="step-item"><span class="step-num">4</span><span>Hacé clic en <strong>Finalizar y combinar</strong> para generar todos los documentos individuales.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://support.microsoft.com/es-es/office/usar-la-combinaci%C3%B3n-de-correspondencia-para-crear-y-enviar-correo-masivo-etiquetas-y-sobres-f488ed5b-b849-4c11-9cff-932c49474705" target="_blank" rel="noopener">Guía de combinación oficial</a>
+              <a class="link-pill" href="https://www.youtube.com/watch?v=NZkw3a0bWTg" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                Combinar y exportar a PDF
+              </a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Reglas lógicas: IF...THEN...ELSE en campos de combinación</div>
+                <div class="topic-desc">El uso de reglas lógicas avanzadas permite que tu documento adapte partes de su contenido de forma condicional. Por ejemplo, cambiar el saludo a "estimada" o "estimado" según el género de la base de datos de destinatarios.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Ubicá tu cursor donde deba aplicarse el texto condicional.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Pestaña <strong>Correspondencia → Reglas → Si... Entonces... Si no...</strong></span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Configurá las variables: Nombre de campo a evaluar, tipo de comparación, valor a cumplir, y los respectivos textos si es verdadero o falso.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Plantillas personalizadas (.dotx)</div>
+                <div class="topic-desc">Crea un documento maestro que incluya los márgenes, estilos, numeración y logotipos institucionales. Al guardarlo en formato plantilla (.dotx), todos los archivos futuros creados a partir de esta respetarán este diseño, ahorrando tiempo de maquetación en cada entrega.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Maqueta tu documento institucional con las configuraciones y estilos requeridos.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Ve a <strong>Archivo → Guardar como</strong>. En el tipo de archivo selecciona <strong>Plantilla de Word (*.dotx)</strong>.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Para crear un documento basado en ella: <strong>Archivo → Nuevo → Personalizado</strong> y seleccioná tu plantilla.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subblock">
+          <div class="subblock-header">
+            <span class="subblock-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </span>
+            <span class="subblock-title">Revisión, seguridad y automatización avanzada</span>
+            <span class="subblock-badge">Avanzado</span>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Control de cambios y comentarios colaborativos</div>
+                <div class="topic-desc">Registra de manera precisa todas las aportaciones, correcciones e inserciones efectuadas sobre el archivo por otros miembros o tutores del proyecto. Facilita la revisión interactiva de borradores aceptando o rechazando cambios individualmente.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Revisar → Control de cambios → Controlar cambios</strong> para activarlo.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Cualquier corrección, eliminación o escritura quedará señalada en color distintivo.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Usa la opción <strong>Aceptar</strong> o <strong>Rechazar</strong> de la pestaña Revisar para procesar los cambios.</span></div>
+              </div>
+            </div>
+            <div class="links-row">
+              <a class="link-pill" href="https://www.youtube.com/watch?v=JjbAFhW3Cxc" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                Control de cambios en Word
+              </a>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Comparación y combinación de dos versiones del mismo documento</div>
+                <div class="topic-desc">Si tienes dos versiones distintas del mismo documento editadas por diferentes personas sin control de cambios activo, Word puede compararlas de manera automática, consolidando las diferencias en un nuevo documento maestro de revisión.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Revisar → Comparar → Comparar...</strong></span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Selecciona en la izquierda tu documento original y en la derecha el documento con las modificaciones.</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Haz clic en Aceptar. Word desplegará una vista triple mostrando las diferencias integradas en forma de control de cambios.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-card">
+            <div class="topic-card-top">
+              <div class="topic-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              </div>
+              <div>
+                <div class="topic-title">Restricciones de edición y protección con contraseña</div>
+                <div class="topic-desc">Word permite restringir qué partes del documento pueden ser editadas y por quién. Se pueden proteger estilos, impedir el formateo libre, o limitar la edición solo a la inserción de comentarios o el llenado de formularios, protegiendo todo mediante una contraseña segura.</div>
+              </div>
+            </div>
+            <div class="topic-steps">
+              <div class="topic-steps-label">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                ¿Cómo se hace?
+              </div>
+              <div class="step-list">
+                <div class="step-item"><span class="step-num">1</span><span>Pestaña <strong>Revisar → Grupo Proteger → Restringir edición</strong>.</span></div>
+                <div class="step-item"><span class="step-num">2</span><span>Configura las restricciones de formato (bloquear cambios de fuentes/tamaños) y restricciones de edición (ej.: solo lectura o solo permitir comentarios).</span></div>
+                <div class="step-item"><span class="step-num">3</span><span>Haz clic en <strong>Sí, aplicar la protección</strong> e ingresa una contraseña secreta.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- RECURSOS -->
+    <div class="section" id="rec" role="tabpanel" aria-labelledby="tab-rec">
+      <div class="section-wrap">
+        <div class="section-heading">
+          <div class="block-label">Recursos <span>y Enlaces</span></div>
+          <h2>Material de apoyo y descargas</h2>
+          <div class="section-heading-bar"></div>
+          <p>Descarga plantillas preconfiguradas, manuales rápidos y archivos de datos de ejemplo para seguir paso a paso las prácticas de las sesiones.</p>
+        </div>
+
+        <div class="recursos-grid">
+          <!-- BÁSICO -->
+          <a href="https://www.youtube.com/watch?v=3251lY_7fJ0" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>1. Primeros pasos e interfaz</strong>
+                <span style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Básico</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Familiarízate con la barra de herramientas, la cinta de opciones y la personalización del lienzo de trabajo.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=4njqqULyyfk" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>2. Formato de fuentes y párrafo</strong>
+                <span style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Básico</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Configuración inicial de formatos de párrafo y espaciado de interlineado recomendados para textos limpios.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=bL8gK6u4Rsc" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>3. Tablas y celdas básicas</strong>
+                <span style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Básico</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Aprende a insertar tablas de datos sencillas y a dar formato básico a bordes, celdas y alineación interna.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <!-- INTERMEDIO -->
+          <a href="https://www.youtube.com/watch?v=Gj9JmYn_NnQ" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>4. Saltos de sección y páginas</strong>
+                <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Intermedio</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Domina la división lógica del documento para cambiar orientaciones y aplicar encabezados independientes.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=VgXNo1JVWYU" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>5. Estilos y Estructura de Tesis</strong>
+                <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Intermedio</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Uso avanzado de títulos jerárquicos y estilos de párrafo para estructurar documentos extensos estables.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://support.microsoft.com/es-es/office/insertar-una-tabla-de-contenido-882e8564-0edb-435e-84b5-1d8552ccf0c0" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #2563eb; background: #eff6ff;">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>6. Tablas de contenido (TDC)</strong>
+                <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Intermedio</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Guía para la inserción de índices automáticos de contenidos que se recalculan dinámicamente al editar.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Guía de Lectura (Soporte)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=tTX4PPr028k" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>7. Rótulos e índices visuales</strong>
+                <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Intermedio</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Cómo rotular figuras y tablas para generar índices de ilustraciones organizados automáticamente.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://normas-apa.org/" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #2563eb; background: #eff6ff;">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>8. Citas y bibliografía APA 7</strong>
+                <span style="background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Intermedio</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Aprende a registrar fuentes bibliográficas y a citarlas correctamente dentro del texto según normas APA.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Guía de Lectura (Blog)
+              </span>
+            </div>
+          </a>
+
+          <!-- AVANZADO -->
+          <a href="https://www.youtube.com/watch?v=jW5QsRpJFhc" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>9. Referencias cruzadas dinámicas</strong>
+                <span style="background: #fdf2f8; border: 1px solid #fbcfe8; color: #db2777; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Avanzado</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Enlaza dinámicamente referencias de figuras y apartados en el texto para que se actualicen al cambiar de página.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://support.microsoft.com/es-es/office/usar-la-combinaci%C3%B3n-de-correspondencia-para-crear-y-enviar-correo-masivo-etiquetas-y-sobres-f488ed5b-b849-4c11-9cff-932c49474705" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #2563eb; background: #eff6ff;">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-4.8a2 2 0 012.22 0l8 4.8A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.25 0l-2.25 1.5"></path></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>10. Combinar correspondencia</strong>
+                <span style="background: #fdf2f8; border: 1px solid #fbcfe8; color: #db2777; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Avanzado</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Automatiza la generación y personalización masiva de documentos vinculando bases de datos de Excel.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Guía de Lectura (Soporte)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=JjbAFhW3Cxc" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>11. Control de cambios y revisión</strong>
+                <span style="background: #fdf2f8; border: 1px solid #fbcfe8; color: #db2777; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Avanzado</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Trabajo en equipo: cómo controlar modificaciones, comparar versiones del mismo archivo y añadir comentarios.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+
+          <a href="https://www.youtube.com/watch?v=2e6i44Xm35E" target="_blank" rel="noopener" class="recurso-card">
+            <div class="recurso-icon" style="color: #ef4444; background: #fef2f2;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </div>
+            <div class="recurso-meta">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                <strong>12. Introducción a Macros en Word</strong>
+                <span style="background: #fdf2f8; border: 1px solid #fbcfe8; color: #db2777; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Avanzado</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">Graba y ejecuta secuencias de comandos sencillas para automatizar tareas repetitivas en tus documentos.</p>
+              <span>
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 12px; height: 12px; margin-right: 4px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                Video Tutorial (YouTube)
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button class="back-top" title="Volver arriba" onclick="scrollToTop()">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </button>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Capacitación en Herramientas Digitales de Escritura Académica.</p>
+    <p>© 2026. Todos los derechos reservados · Desarrollado de forma premium para <strong>Estudiantes de Nivel Superior</strong>.</p>
+  </footer>
+
+  <!-- JAVASCRIPT FOR TABS AND BUTTON SCROLL -->
+  <script>
+    // Tab controller logic with smooth transition
+    function goTab(tabId, btn) {
+      // Find all sections
+      const sections = document.querySelectorAll('.section');
+      // Hide and fade-out all sections
+      sections.forEach(sec => {
+        sec.classList.remove('active', 'fade-in');
+      });
+
+      // Find all tab buttons
+      const tabs = document.querySelectorAll('.nav-tab');
+      // Reset active state and ARIA attributes
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+
+      // Display and animate active section
+      const activeSection = document.getElementById(tabId);
+      if (activeSection) {
+        activeSection.classList.add('active');
+        
+        // Force reflow for CSS animation trigger
+        activeSection.offsetHeight;
+        
+        activeSection.classList.add('fade-in');
+      }
+
+      // Mark clicked tab button as active
+      if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+      }
+
+      // Smooth scroll back to navigation if scrolled past it
+      const navSticky = document.querySelector('.nav-sticky');
+      if (navSticky) {
+        const navRect = navSticky.getBoundingClientRect();
+        if (navRect.top < 0) {
+          window.scrollTo({
+            top: window.scrollY + navRect.top - 10,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
+
+    // Scroll display logic for Back-to-top button
+    window.addEventListener('scroll', () => {
+      const backTopButton = document.querySelector('.back-top');
+      if (backTopButton) {
+        if (window.scrollY > 300) {
+          backTopButton.classList.add('vis');
+        } else {
+          backTopButton.classList.remove('vis');
+        }
+      }
+    });
+
+    // Smooth scroll back to top function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>

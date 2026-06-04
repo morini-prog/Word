@@ -1,0 +1,8 @@
+Nombre,Apellido,Genero,Email,NotaFinal,Estatus,Institucion
+Marcelo,Morini,M,marcelo@ejemplo.com,9.5,Aprobado,Universidad Leibnitz
+Maria,Gonzalez,F,maria.g@ejemplo.com,8.7,Aprobado,Instituto Leibniz
+Carlos,Perez,M,carlos.p@ejemplo.com,5.4,Reprobado,Universidad Leibnitz
+Ana,Rodriguez,F,ana.r@ejemplo.com,9.0,Aprobado,Instituto Leibniz
+Juan,Lopez,M,juan.l@ejemplo.com,7.2,Aprobado,Universidad Leibnitz
+Sofía,Martinez,F,sofia.m@ejemplo.com,10.0,Aprobado,Instituto Leibniz
+Luis,Gomez,M,luis.g@ejemplo.com,4.8,Reprobado,Universidad Leibnitz
