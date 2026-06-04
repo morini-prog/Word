@@ -923,6 +923,142 @@
       }
     }
 
+    /* QUIZ STYLES */
+    .quiz-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-top: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .quiz-header h3 {
+      font-size: 1.15rem;
+      color: var(--text-dark);
+      margin: 0;
+    }
+    .quiz-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+    }
+    .quiz-questions {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .quiz-question {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+    .quiz-question-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      transition: var(--transition);
+    }
+    .quiz-option:hover {
+      background: #eff6ff;
+      border-color: var(--primary-border);
+      color: var(--text-dark);
+    }
+    .quiz-option input[type="radio"] {
+      margin-top: 4px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .quiz-option.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    .quiz-feedback {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .quiz-feedback.correct {
+      display: block;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+    .quiz-feedback.incorrect {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+    .quiz-action-bar {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .btn-verify {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-verify:hover {
+      background: var(--primary-hover);
+    }
+    .quiz-score-display {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: none;
+    }
+    .quiz-score-display.visible {
+      display: block;
+    }
+
     /* CHALLENGES PANEL STYLES */
     .challenges-panel {
       background: #fff;
@@ -1845,6 +1981,56 @@
             </div>
           </div>
         </div>
+
+        <!-- AUTOEVALUACIÓN BLOQUE 1 -->
+        <div class="quiz-container" id="quiz-b1">
+          <div class="quiz-header">
+            <h3>Autoevaluación del Bloque 1: Estructuración y Geometría</h3>
+            <span class="quiz-badge">4 Preguntas</span>
+          </div>
+          <div class="quiz-questions">
+            <div class="quiz-question" data-correct="1">
+              <div class="quiz-question-text">1. ¿Qué ocurre si cambia la orientación de una página a horizontal en un documento que no contiene saltos de sección?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b1-1" value="0"> <span>A) Solo esa página cambia a horizontal.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-1" value="1"> <span>B) Todo el documento cambia a horizontal.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-1" value="2"> <span>C) Word muestra un error de compatibilidad.</span></label>
+              </div>
+              <div class="quiz-feedback">Sin saltos de sección, el formato de página es global y afecta a todo el documento.</div>
+            </div>
+            <div class="quiz-question" data-correct="1">
+              <div class="quiz-question-text">2. ¿Cuál es la forma correcta de iniciar la numeración desde "1" en la página de Introducción tras un índice?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b1-2" value="0"> <span>A) Insertar un salto de página y reiniciar numeración.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-2" value="1"> <span>B) Insertar un salto de sección, desvincular el pie de página del anterior y configurar la numeración para iniciar en 1.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-2" value="2"> <span>C) Escribir el número manual en el pie de página.</span></label>
+              </div>
+              <div class="quiz-feedback">La numeración independiente requiere un salto de sección y romper el vínculo ("Vincular al anterior") en el pie.</div>
+            </div>
+            <div class="quiz-question" data-correct="1">
+              <div class="quiz-question-text">3. ¿Para qué sirve el Panel de Navegación en Word?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b1-3" value="0"> <span>A) Para buscar palabras repetidas en el texto.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-3" value="1"> <span>B) Para visualizar la jerarquía de títulos y reorganizar secciones arrastrándolas.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-3" value="2"> <span>C) Para cambiar la fuente de forma masiva.</span></label>
+              </div>
+              <div class="quiz-feedback">El panel organiza visualmente los títulos estructurados con estilos y permite mover bloques de texto completos con drag-and-drop.</div>
+            </div>
+            <div class="quiz-question" data-correct="2">
+              <div class="quiz-question-text">4. ¿Qué diferencia hay entre un Salto de Página y un Salto de Sección de Página Siguiente?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b1-4" value="0"> <span>A) Ninguna, funcionan idénticamente.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-4" value="1"> <span>B) El salto de página divide el formato, el de sección no.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b1-4" value="2"> <span>C) El salto de página solo desplaza el texto; el de sección permite aplicar configuraciones de diseño independientes.</span></label>
+              </div>
+              <div class="quiz-feedback">Las secciones dividen el documento en zonas independientes para configurar márgenes, orientación y paginación propia.</div>
+            </div>
+          </div>
+          <div class="quiz-action-bar">
+            <button class="btn-verify" onclick="verifyQuiz('quiz-b1')">Verificar Respuestas</button>
+            <div class="quiz-score-display">Puntuación: 0 / 4</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -2022,6 +2208,56 @@
               </div>
             </div>
           </div>
+
+          <!-- AUTOEVALUACIÓN BLOQUE 2 -->
+          <div class="quiz-container" id="quiz-b2">
+            <div class="quiz-header">
+              <h3>Autoevaluación del Bloque 2: Elementos Complejos y Tablas</h3>
+              <span class="quiz-badge">4 Preguntas</span>
+            </div>
+            <div class="quiz-questions">
+              <div class="quiz-question" data-correct="1">
+                <div class="quiz-question-text">1. En una tabla extensa que abarca múltiples páginas, ¿cómo se repite automáticamente la fila de encabezados?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b2-1" value="0"> <span>A) Copiando la fila superior y pegándola de manera manual en la parte superior de cada página.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-1" value="1"> <span>B) Seleccionando la fila y habilitando la opción "Repetir filas de título" en las propiedades de la tabla.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-1" value="2"> <span>C) Generando un salto de sección al final de cada página para forzar el encabezado.</span></label>
+                </div>
+                <div class="quiz-feedback">La opción "Repetir filas de título" indica a Word que replique de forma automática e inteligente la cabecera en cada hoja nueva que ocupe la tabla.</div>
+              </div>
+              <div class="quiz-question" data-correct="1">
+                <div class="quiz-question-text">2. ¿De qué manera se realiza la alineación vertical del texto dentro de las celdas de una tabla en Word?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b2-2" value="0"> <span>A) Añadiendo retornos de carro (tecla Enter) antes del texto en la celda.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-2" value="1"> <span>B) Desde el panel Propiedades de la tabla → pestaña Celda → seleccionando la Alineación vertical.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-2" value="2"> <span>C) Incrementando el interlineado del texto de la tabla.</span></label>
+                </div>
+                <div class="quiz-feedback">El formato del texto dentro de la celda se define mediante su alineación (superior, centro o inferior) en las propiedades de celda.</div>
+              </div>
+              <div class="quiz-question" data-correct="0">
+                <div class="quiz-question-text">3. ¿Qué opción permite estructurar texto separado por delimitadores (tabulaciones, comas) en una tabla formal?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b2-3" value="0"> <span>A) Acceder a la ruta Insertar → Tabla → Convertir texto en tabla.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-3" value="1"> <span>B) Exportar los datos a Excel para su conversión y volverlos a pegar en el documento.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-3" value="2"> <span>C) Crear la tabla vacía y rellenar las celdas manualmente utilizando copiar y pegar.</span></label>
+                </div>
+                <div class="quiz-feedback">El conversor dinámico de Word permite procesar listas estructuradas con separadores definidos en tablas con solo un clic.</div>
+              </div>
+              <div class="quiz-question" data-correct="1">
+                <div class="quiz-question-text">4. ¿Es posible realizar operaciones aritméticas sencillas directamente en las celdas de una tabla de Word?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b2-4" value="0"> <span>A) No, cualquier cálculo numérico debe ser procesado de manera externa o mediante Excel.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-4" value="1"> <span>B) Sí, mediante la opción Disposición → Datos → Fórmula y el uso de expresiones como `=SUM(ABOVE)`.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b2-4" value="2"> <span>C) Sí, pero requiere la inserción obligatoria de una macro codificada en VBA.</span></label>
+                </div>
+                <div class="quiz-feedback">Word incluye un motor básico de fórmulas para tablas que permite sumas, promedios y conteos rápidos sin necesidad de enlazar hojas de cálculo externas.</div>
+              </div>
+            </div>
+            <div class="quiz-action-bar">
+              <button class="btn-verify" onclick="verifyQuiz('quiz-b2')">Verificar Respuestas</button>
+              <div class="quiz-score-display">Puntuación: 0 / 4</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2178,6 +2414,56 @@
                 <div class="step-item"><span class="step-num">3</span><span>Selecciona en "Tipo de referencia" el objeto a enlazar (Título, Ilustración o Tabla) e indica qué quieres mostrar (por ejemplo, "Número y etiqueta" o "Número de página").</span></div>
                 <div class="step-item"><span class="step-num">4</span><span>Presiona <strong>Ctrl+A</strong> y luego <strong>F9</strong> para recalcular y actualizar la referencia tras hacer cambios en el documento.</span></div>
               </div>
+            </div>
+          </div>
+
+          <!-- AUTOEVALUACIÓN BLOQUE 3 -->
+          <div class="quiz-container" id="quiz-b3">
+            <div class="quiz-header">
+              <h3>Autoevaluación del Bloque 3: Referencias y Documentación</h3>
+              <span class="quiz-badge">4 Preguntas</span>
+            </div>
+            <div class="quiz-questions">
+              <div class="quiz-question" data-correct="1">
+                <div class="quiz-question-text">1. ¿Cómo se actualiza una Tabla de Contenido automática tras realizar cambios en el texto y páginas del documento?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b3-1" value="0"> <span>A) Se debe eliminar la tabla y volverla a insertar en la página correspondiente.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-1" value="1"> <span>B) Clic derecho sobre la tabla → "Actualizar campos" → seleccionar la opción de actualización.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-1" value="2"> <span>C) Modificando manualmente los números de página en la estructura del índice.</span></label>
+                </div>
+                <div class="quiz-feedback">Al actualizar campos, Word vuelve a mapear la estructura jerárquica de títulos y actualiza los números de página automáticamente.</div>
+              </div>
+              <div class="quiz-question" data-correct="1">
+                <div class="quiz-question-text">2. ¿Qué función cumple una referencia cruzada en un documento académico extenso?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b3-2" value="0"> <span>A) Crear un enlace hipertexto que vincula con un recurso externo en la web.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-2" value="1"> <span>B) Vincular texto a títulos, ilustraciones o tablas internas, actualizando dinámicamente sus números si cambia la maquetación.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-2" value="2"> <span>C) Insertar la lista de referencias bibliográficas al final del documento.</span></label>
+                </div>
+                <div class="quiz-feedback">Las referencias cruzadas son campos dinámicos que se enlazan con etiquetas internas, evitando que las referencias numéricas queden obsoletas al modificar el documento.</div>
+              </div>
+              <div class="quiz-question" data-correct="1">
+                <div class="quiz-question-text">3. Cuando se inserta una fuente bibliográfica en la herramienta nativa de Word, ¿dónde queda almacenada?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b3-3" value="0"> <span>A) Únicamente como texto plano estático en la ubicación actual del cursor.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-3" value="1"> <span>B) En una base de datos local y global de fuentes que permite su reutilización en otros archivos.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-3" value="2"> <span>C) En los metadatos ocultos del archivo comprimido.</span></label>
+                </div>
+                <div class="quiz-feedback">Word guarda un registro global de fuentes bibliográficas (archivo `sources.xml`), facilitando citar el mismo autor en múltiples investigaciones distintas.</div>
+              </div>
+              <div class="quiz-question" data-correct="0">
+                <div class="quiz-question-text">4. ¿Cuál es el principal beneficio de utilizar "Notas al pie" gestionadas de manera automática?</div>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q-b3-4" value="0"> <span>A) Word las numera correlativamente y las mantiene de forma estable al final de la página correspondiente.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-4" value="1"> <span>B) Permite aligerar el peso de almacenamiento del archivo en disco.</span></label>
+                  <label class="quiz-option"><input type="radio" name="q-b3-4" value="2"> <span>C) Traducen de manera automática los comentarios a otros idiomas en el navegador.</span></label>
+                </div>
+                <div class="quiz-feedback">Las notas al pie automáticas regulan por sí mismas el espacio de la caja de texto y la secuencia numérica correlativa si se insertan o eliminan notas intermedias.</div>
+              </div>
+            </div>
+            <div class="quiz-action-bar">
+              <button class="btn-verify" onclick="verifyQuiz('quiz-b3')">Verificar Respuestas</button>
+              <div class="quiz-score-display">Puntuación: 0 / 4</div>
             </div>
           </div>
         </div>
@@ -2363,6 +2649,56 @@
                 <div class="step-item"><span class="step-num">3</span><span>Haz clic en <strong>Sí, aplicar la protección</strong> e ingresa una contraseña secreta.</span></div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- AUTOEVALUACIÓN BLOQUE 4 -->
+        <div class="quiz-container" id="quiz-b4">
+          <div class="quiz-header">
+            <h3>Autoevaluación del Bloque 4: Automatización y Seguridad</h3>
+            <span class="quiz-badge">4 Preguntas</span>
+          </div>
+          <div class="quiz-questions">
+            <div class="quiz-question" data-correct="1">
+              <div class="quiz-question-text">1. ¿Qué es una macro en Microsoft Word?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b4-1" value="0"> <span>A) Una tipografía de gran tamaño para títulos.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-1" value="1"> <span>B) Una serie de comandos grabados que se ejecutan automáticamente para agilizar tareas repetitivas.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-1" value="2"> <span>C) Un sistema de seguridad contra virus.</span></label>
+              </div>
+              <div class="quiz-feedback">Las macros automatizan flujos complejos de trabajo mediante código VBA.</div>
+            </div>
+            <div class="quiz-question" data-correct="1">
+              <div class="quiz-question-text">2. ¿En qué formato se debe guardar un documento de Word para conservar sus macros activas?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b4-2" value="0"> <span>A) .docx</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-2" value="1"> <span>B) .docm (Documento habilitado para macros)</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-2" value="2"> <span>C) .dotx</span></label>
+              </div>
+              <div class="quiz-feedback">El formato estándar `.docx` bloquea macros por seguridad; se requiere usar obligatoriamente `.docm`.</div>
+            </div>
+            <div class="quiz-question" data-correct="0">
+              <div class="quiz-question-text">3. Para impedir modificaciones de texto en un documento pero permitir comentarios, ¿qué tipo de protección aplica?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b4-3" value="0"> <span>A) Restringir edición → Permitir solo: Comentarios.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-3" value="1"> <span>B) Cifrar con contraseña de apertura.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-3" value="2"> <span>C) Guardar como plantilla protegida contra escritura.</span></label>
+              </div>
+              <div class="quiz-feedback">Permite la lectura y anotación colaborativa bloqueando cualquier edición estructural o textual.</div>
+            </div>
+            <div class="quiz-question" data-correct="1">
+              <div class="quiz-question-text">4. ¿Qué función cumple la herramienta "Inspector de documentos"?</div>
+              <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q-b4-4" value="0"> <span>A) Verifica si el documento tiene virus o malware.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-4" value="1"> <span>B) Busca y quita metadatos, información personal oculta y comentarios antes de compartir un archivo.</span></label>
+                <label class="quiz-option"><input type="radio" name="q-b4-4" value="2"> <span>C) Revisa la ortografía en múltiples idiomas.</span></label>
+              </div>
+              <div class="quiz-feedback">Es clave para la privacidad, eliminando trazas internas de autoría y revisiones previas.</div>
+            </div>
+          </div>
+          <div class="quiz-action-bar">
+            <button class="btn-verify" onclick="verifyQuiz('quiz-b4')">Verificar Respuestas</button>
+            <div class="quiz-score-display">Puntuación: 0 / 4</div>
           </div>
         </div>
       </div>
@@ -2892,7 +3228,95 @@
     }
 
     // Call initSimulator when DOM is loaded
-    document.addEventListener('DOMContentLoaded', initSimulator);
+    document.addEventListener('DOMContentLoaded', () => {
+      initSimulator();
+      initQuizListeners();
+    });
+
+    // QUIZ LOGIC
+    function initQuizListeners() {
+      const radioInputs = document.querySelectorAll('.quiz-option input[type="radio"]');
+      radioInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+          const questionBlock = e.target.closest('.quiz-question');
+          if (questionBlock) {
+            const siblings = questionBlock.querySelectorAll('.quiz-option');
+            siblings.forEach(sib => sib.classList.remove('selected'));
+          }
+          const label = e.target.closest('.quiz-option');
+          if (label) {
+            label.classList.add('selected');
+          }
+        });
+      });
+    }
+
+    function verifyQuiz(quizId) {
+      const container = document.getElementById(quizId);
+      if (!container) return;
+
+      const questions = container.querySelectorAll('.quiz-question');
+      let score = 0;
+      let total = questions.length;
+      let allAnswered = true;
+
+      questions.forEach((q) => {
+        const checked = q.querySelector('input[type="radio"]:checked');
+        if (!checked) {
+          allAnswered = false;
+        }
+      });
+
+      if (!allAnswered) {
+        alert('Por favor, responda todas las preguntas antes de verificar.');
+        return;
+      }
+
+      questions.forEach((q) => {
+        const checked = q.querySelector('input[type="radio"]:checked');
+        const feedback = q.querySelector('.quiz-feedback');
+        const correctIndex = parseInt(q.getAttribute('data-correct'), 10);
+        const options = q.querySelectorAll('.quiz-option');
+
+        // Reset option styling
+        options.forEach(opt => {
+          opt.style.borderColor = '';
+          opt.style.background = '';
+        });
+
+        const selectedIndex = Array.from(options).findIndex(opt => opt.querySelector('input[type="radio"]').checked);
+
+        if (selectedIndex === correctIndex) {
+          score++;
+          feedback.className = 'quiz-feedback correct';
+          feedback.style.display = 'block';
+          const correctOpt = options[correctIndex];
+          if (correctOpt) {
+            correctOpt.style.borderColor = '#22c55e';
+            correctOpt.style.background = '#f0fdf4';
+          }
+        } else {
+          feedback.className = 'quiz-feedback incorrect';
+          feedback.style.display = 'block';
+          const incorrectOpt = options[selectedIndex];
+          if (incorrectOpt) {
+            incorrectOpt.style.borderColor = '#ef4444';
+            incorrectOpt.style.background = '#fef2f2';
+          }
+          const correctOpt = options[correctIndex];
+          if (correctOpt) {
+            correctOpt.style.borderColor = '#22c55e';
+            correctOpt.style.background = '#f0fdf4';
+          }
+        }
+      });
+
+      const scoreDisplay = container.querySelector('.quiz-score-display');
+      if (scoreDisplay) {
+        scoreDisplay.innerText = `Puntuación: ${score} / ${total} respuestas correctas.`;
+        scoreDisplay.classList.add('visible');
+      }
+    }
   </script>
 </body>
 </html>
